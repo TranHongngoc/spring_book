@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+</head>
+<body>
+<h1>Edit Book</h1>
+<p>
+    <a th:href="@{/book}">list book</a>
+</p>
+
+<form th:action="/edit" method="post" th:object="${book}">
+    <table>
+        <tr>
+            <td>Book Code: </td>
+            <td>
+                <input type="text" th:field="*{booksCode}">
+                <a th:if="${#fields.hasErrors('code')}" th:errors="*{booksCode}">Name Error</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Price: </td>
+            <td>
+                <input type="text" th:field="*{price}">
+                <a th:if="${#fields.hasErrors('code')}" th:errors="*{price}">Name Error</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Status: </td>
+            <td>
+                <input type="text" th:field="*{status}">
+                <a th:if="${#fields.hasErrors('code')}" th:errors="*{status}">Name Error</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Discount: </td>
+            <td>
+                <input type="text" th:field="*{discount}">
+                <a th:if="${#fields.hasErrors('code')}" th:errors="*{discount}">Name Error</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Company: </td>
+            <td>
+                <input type="text" th:field="*{company}">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Nunber: </td>
+            <td>
+                <input type="text" th:field="*{number}">
+                <a th:if="${#fields.hasErrors('code')}" th:errors="*{number}">Name Error</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Description: </td>
+            <td>
+                <input type="text" th:field="*{description}">
+
+            </td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Edit</button></td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>
