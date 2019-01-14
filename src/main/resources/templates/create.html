@@ -7,19 +7,19 @@
 <body>
 <h1>Create Book</h1>
 <p>
-    <a th:href="@{/book}">list book</a>
+    <a th:href="@{/books}">list book</a>
 </p>
 <p>
     <a th:text="${message}"></a>
 </p>
 
-<form th:action="/create" method="post" th:object="${book}">
+<form action="/create" method="post" th:object="${book}">
     <table>
         <tr>
             <td>Book Code: </td>
             <td>
                 <input type="text" th:field="*{booksCode}">
-                <a th:if="${#fields.hasErrors('code')}" th:errors="*{booksCode}">Name Error</a>
+                <a th:if="${#fields.hasErrors('booksCode')}" th:errors="*{booksCode}">Name Error</a>
             </td>
         </tr>
 
@@ -27,7 +27,7 @@
             <td>Price: </td>
             <td>
                 <input type="text" th:field="*{price}">
-                <a th:if="${#fields.hasErrors('code')}" th:errors="*{price}">Name Error</a>
+                <a th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name Error</a>
             </td>
         </tr>
 
@@ -35,7 +35,7 @@
             <td>Status: </td>
             <td>
                 <input type="text" th:field="*{status}">
-                <a th:if="${#fields.hasErrors('code')}" th:errors="*{status}">Name Error</a>
+                <a th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Name Error</a>
             </td>
         </tr>
 
@@ -43,7 +43,7 @@
             <td>Discount: </td>
             <td>
                 <input type="text" th:field="*{discount}">
-                <a th:if="${#fields.hasErrors('code')}" th:errors="*{discount}">Name Error</a>
+                <a th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}">Name Error</a>
             </td>
         </tr>
 
@@ -58,7 +58,7 @@
             <td>Nunber: </td>
             <td>
                 <input type="text" th:field="*{number}">
-                <a th:if="${#fields.hasErrors('code')}" th:errors="*{number}">Name Error</a>
+                <a th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Name Error</a>
             </td>
         </tr>
 

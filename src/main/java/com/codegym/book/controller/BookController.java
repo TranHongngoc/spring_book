@@ -10,17 +10,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class bookController {
-
-    @Autowired
-    private BookRepository bookRepository;
+public class BookController {
 
     @Autowired
     private BookService bookService;
@@ -40,7 +34,7 @@ public class bookController {
     public ModelAndView save(@Validated @ModelAttribute("book") Book book, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView("create");
         if (bindingResult.hasFieldErrors()){
-            modelAndView.addAllObjects(bindingResult.getModel());
+            modelAndView.addObject("create",new Book());
             return modelAndView;
         }else {
             bookService.save(book);
@@ -73,8 +67,18 @@ public class bookController {
         return new ModelAndView("delete","book",book);
     }
     @PostMapping("delete")
-    public ModelAndView deleteStudent(@ModelAttribute("student") Book book){
+    public ModelAndView deleteBook(@ModelAttribute("book") Book book){
         bookService.remove(book.getID());
-        return new ModelAndView("redirect:list");
+        return new ModelAndView("redirect:books");
+    }
+
+    @GetMapping("/search")
+    public ModelAndView search(@RequestParam ("search") String search,@PageableDefault(3) Pageable pageable){
+        Page<Book> books = bookService.findByCode(search,pageable);
+        ModelAndView modelAndView = new ModelAndView("search");
+        modelAndView.addObject("search", search);
+        modelAndView.addObject("asd",books);
+
+        return modelAndView;
     }
 }

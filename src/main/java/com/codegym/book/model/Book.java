@@ -116,7 +116,7 @@ public class Book {
     }
 
     @ManyToOne(targetEntity = Category.class)
-    @JoinColumn(name = "department_ID")
+    @JoinColumn(name = "category_ID")
     private Category category;
 
     public Category getCategory() {
